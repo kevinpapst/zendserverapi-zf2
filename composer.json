@@ -4,5 +4,11 @@
     "require": {
             "zendframework/zendframework" : "dev-master",
             "zendserverapi/zendserverapi" : "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "KepaZendServerApiZf2": "library/",
+            "KepaZendServerApiZf2Test": "tests/library/"
+        }
     }
 }
