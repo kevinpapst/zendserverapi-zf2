@@ -7,6 +7,8 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class BaseApiFactory implements AbstractFactoryInterface
 {
+    private $availableServices = array('deployment', 'monitor');
+
 
     /**
      * Determine if we can create a service with name
@@ -18,7 +20,7 @@ class BaseApiFactory implements AbstractFactoryInterface
      */
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        return false;
+        return in_array($name, $this->availableServices);
     }
 
     /**
@@ -31,6 +33,12 @@ class BaseApiFactory implements AbstractFactoryInterface
      */
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
-        return null;
+        $config = $serviceLocator->get('Config');
+        $settings = $config['zsapi']['settings'];
+
+        $api = new \ReflectionClass('\ZendService\ZendServerAPI\\' . ucfirst(strtolower($name)));
+        $baseApi = $api->newInstance($settings);
+
+        return $baseApi;
     }
 }
