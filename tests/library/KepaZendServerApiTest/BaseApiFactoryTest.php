@@ -8,44 +8,21 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
 {
     public function testBaseApiFactory()
     {
-        $config = array(
-            "service_manager" => array(
-                "abstract_factories" => array(
-                    'zsapi' => 'KepaZendServerApi\BaseApiFactory'
-                )
-            ),
-            'zsapi' => array(
-                'settings' => array(
-                    'version' => \ZendService\ZendServerAPI\Version::ZS56,
-                    'name' => '',
-                    'key' => '',
-                    'host' => '.my.phpcloud.com',
-                    'port' => 10082,
-                    'timeout' => 60
-                )
-            )
-        );
-
-        $serviceManager = new \Zend\ServiceManager\ServiceManager();
-        $serviceManager->setService('Config', $config);
+        $serviceManager = $this->getServiceManager();
+        $config = $this->getServiceManagerConfig();
 
         $baseApiFactory = new \KepaZendServerApi\BaseApiFactory();
+        /* @var $api \ZendService\ZendServerAPI\Deployment */
         $api = $baseApiFactory->createServiceWithName($serviceManager, 'deployment', 'deployment');
         $this->assertInstanceOf('\ZendService\ZendServerAPI\Deployment', $api);
+
+        $actual = $api->getRequest()->getConfig();
+        $this->assertEquals($actual->getApiKey()->getKey(), $config['zsapi']['settings']['key']);
     }
 
     public function testAvailableServices()
     {
-        $config = array(
-            "service_manager" => array(
-                "abstract_factories" => array(
-                    'zsapi' => 'KepaZendServerApi\BaseApiFactory'
-                )
-            )
-        );
-
-        $serviceManager = new \Zend\ServiceManager\ServiceManager();
-        $serviceManager->setService('Config', $config);
+        $serviceManager = $this->getServiceManager();
 
         $baseApiFactory = new \KepaZendServerApi\BaseApiFactory();
         $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'deployment', 'deployment');
@@ -57,4 +34,36 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
         $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'bla', 'deployment');
         $this->assertFalse($api);
     }
+
+    protected function getServiceManagerConfig()
+    {
+        return array(
+            "service_manager" => array(
+                "abstract_factories" => array(
+                    'zsapi' => 'KepaZendServerApi\BaseApiFactory'
+                )
+            ),
+            'zsapi' => array(
+                'settings' => array(
+                    'version' => \ZendService\ZendServerAPI\Version::ZS56,
+                    'name' => 'foo',
+                    'key' => '64eee272e1hbd5ghz4bf39b13932f75675f6c36c34522149f9bac0c9cb47c63e',
+                    'host' => 'www.example.com',
+                    'port' => 10082,
+                    'timeout' => 60
+                )
+            )
+        );
+    }
+
+    protected function getServiceManager()
+    {
+        $config = $this->getServiceManagerConfig();
+
+        $serviceManager = new \Zend\ServiceManager\ServiceManager();
+        $serviceManager->setService('Config', $config);
+
+        return $serviceManager;
+    }
+
 }
