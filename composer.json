@@ -1,0 +1,7 @@
+{
+    "minimum-stability": "dev",
+    "require": {
+            "zendframework/zendframework" : "dev-master",
+            "zendserverapi/zendserverapi" : "dev-master"
+    }
+}
