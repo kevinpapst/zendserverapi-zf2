@@ -7,8 +7,8 @@
     },
     "autoload": {
         "psr-0": {
-            "KepaZendServerApiZf2": "library/",
-            "KepaZendServerApiZf2Test": "tests/library/"
+            "KepaZendServerApi": "library/",
+            "KepaZendServerApiTest": "tests/library/"
         }
     }
 }

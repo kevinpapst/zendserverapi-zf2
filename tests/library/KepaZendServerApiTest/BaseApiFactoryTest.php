@@ -1,6 +1,6 @@
 <?php
 
-namespace tests;
+namespace KepaZendServerApiTest;
 
 use PHPUnit_Framework_TestCase;
 
