@@ -1,5 +1,5 @@
 {
-    "name": "zendserverapi-zf2",
+    "name": "zendserverapi/zf2",
     "minimum-stability": "dev",
     "require": {
             "zendframework/zendframework" : "dev-master",
