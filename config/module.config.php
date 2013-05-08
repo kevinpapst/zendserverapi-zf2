@@ -3,7 +3,7 @@
 return array(
     "service_manager" => array(
         "abstract_factories" => array(
-            'zsapi' => 'KepaZendServerApi\BaseApiFactory'
+            'zsapi' => 'Keleo\ZendServerApi\BaseApiFactory'
         )
     ),
     'zsapi' => array(

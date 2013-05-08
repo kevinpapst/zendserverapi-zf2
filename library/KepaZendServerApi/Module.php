@@ -1,6 +1,6 @@
 <?php
 
-namespace KepaZendServerApi;
+namespace Keleo\ZendServerApi;
 
 use Zend\ModuleManager\Feature\ConfigProviderInterface;
 

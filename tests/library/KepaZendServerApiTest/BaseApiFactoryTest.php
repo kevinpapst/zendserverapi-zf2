@@ -1,6 +1,6 @@
 <?php
 
-namespace KepaZendServerApiTest;
+namespace Keleo\ZendServerApiTest;
 
 use PHPUnit_Framework_TestCase;
 
@@ -11,7 +11,7 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
         $serviceManager = $this->getServiceManager();
         $config = $this->getServiceManagerConfig();
 
-        $baseApiFactory = new \KepaZendServerApi\BaseApiFactory();
+        $baseApiFactory = new \Keleo\ZendServerApi\BaseApiFactory();
         /* @var $api \ZendService\ZendServerAPI\Deployment */
         $api = $baseApiFactory->createServiceWithName($serviceManager, 'deployment', 'deployment');
         $this->assertInstanceOf('\ZendService\ZendServerAPI\Deployment', $api);
@@ -24,7 +24,7 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
     {
         $serviceManager = $this->getServiceManager();
 
-        $baseApiFactory = new \KepaZendServerApi\BaseApiFactory();
+        $baseApiFactory = new \Keleo\ZendServerApi\BaseApiFactory();
         $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'deployment', 'deployment');
         $this->assertTrue($api);
 
@@ -40,7 +40,7 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
         return array(
             "service_manager" => array(
                 "abstract_factories" => array(
-                    'zsapi' => 'KepaZendServerApi\BaseApiFactory'
+                    'zsapi' => 'Keleo\ZendServerApi\BaseApiFactory'
                 )
             ),
             'zsapi' => array(

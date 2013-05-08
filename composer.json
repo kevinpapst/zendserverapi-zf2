@@ -7,8 +7,8 @@
     },
     "autoload": {
         "psr-0": {
-            "KepaZendServerApi": "library/",
-            "KepaZendServerApiTest": "tests/library/"
+            "Keleo\ZendServerApi": "library/",
+            "Keleo\ZendServerApiTest": "tests/library/"
         }
     }
 }
