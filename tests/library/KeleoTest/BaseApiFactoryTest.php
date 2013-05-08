@@ -1,6 +1,6 @@
 <?php
 
-namespace Keleo\ZendServerApiTest;
+namespace KeleoTest\ZendServerAPI;
 
 use PHPUnit_Framework_TestCase;
 
