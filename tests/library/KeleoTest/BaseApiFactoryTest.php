@@ -17,7 +17,7 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\ZendService\ZendServerAPI\Deployment', $api);
 
         $actual = $api->getRequest()->getConfig();
-        $this->assertEquals($actual->getApiKey()->getKey(), $config['zsapi']['settings']['key']);
+        $this->assertEquals($actual->getApiKey()->getKey(), $config['zsapi']['general']['key']);
     }
 
     public function testAvailableServices()
@@ -44,7 +44,7 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
                 )
             ),
             'zsapi' => array(
-                'settings' => array(
+                'general' => array(
                     'version' => \ZendService\ZendServerAPI\Version::ZS56,
                     'name' => 'foo',
                     'key' => '64eee272e1hbd5ghz4bf39b13932f75675f6c36c34522149f9bac0c9cb47c63e',
