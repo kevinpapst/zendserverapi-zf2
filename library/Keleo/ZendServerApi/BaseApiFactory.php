@@ -4,6 +4,8 @@ namespace Keleo\ZendServerApi;
 
 use Zend\ServiceManager\AbstractFactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
+use RuntimeException;
+use ReflectionClass;
 
 class BaseApiFactory implements AbstractFactoryInterface
 {
@@ -34,9 +36,18 @@ class BaseApiFactory implements AbstractFactoryInterface
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName)
     {
         $config = $serviceLocator->get('Config');
-        $settings = $config['zsapi']['settings'];
+        $server = $config['zsapi']['default_server'];
 
-        $api = new \ReflectionClass('\ZendService\ZendServerAPI\\' . ucfirst(strtolower($name)));
+        if (!isset($config['zsapi'][$server])) {
+            throw new RuntimeException('Could not find default server "'.$server.'"');
+        }
+
+        $settings = $config['zsapi'][$server];
+        if (isset($config['zsapi']['settings'])) {
+            $settings = array_merge($config['zsapi']['settings'], $settings);
+        }
+
+        $api = new ReflectionClass('\ZendService\ZendServerAPI\\' . ucfirst(strtolower($name)));
         $baseApi = $api->newInstance($settings);
 
         return $baseApi;
