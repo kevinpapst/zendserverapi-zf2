@@ -9,7 +9,7 @@ use ReflectionClass;
 
 class BaseApiFactory implements AbstractFactoryInterface
 {
-    private $availableServices = array('deployment', 'monitor');
+    private $availableServices = array('deployment', 'monitor', 'codetracing', 'filter');
 
 
     /**
