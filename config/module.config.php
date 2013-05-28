@@ -30,11 +30,11 @@ return array(
             }
         ),
         'invokables' => array(
-            'deployment'    => 'Keleo\Controller\Plugin\Deployment',
-            'monitor'       => 'Keleo\Controller\Plugin\Monitor',
-            'codetracing'   => 'Keleo\Controller\Plugin\Codetracing',
-            'filter'        => 'Keleo\Controller\Plugin\Filter',
-            'server'        => 'Keleo\Controller\Plugin\Server',
+            'deployment'    => 'Keleo\ZendServerApi\Controller\Plugin\Deployment',
+            'monitor'       => 'Keleo\ZendServerApi\Controller\Plugin\Monitor',
+            'codetracing'   => 'Keleo\ZendServerApi\Controller\Plugin\Codetracing',
+            'filter'        => 'Keleo\ZendServerApi\Controller\Plugin\Filter',
+            'server'        => 'Keleo\ZendServerApi\Controller\Plugin\Server',
         )
     )
 );
