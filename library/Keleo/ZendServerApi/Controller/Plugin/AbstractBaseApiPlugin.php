@@ -73,4 +73,9 @@ abstract class AbstractBaseApiPlugin extends AbstractPlugin implements ServiceMa
         return $this->getBaseAPI();
     }
 
+    public function get($server = null)
+    {
+        return $this($server);
+    }
+
 }
