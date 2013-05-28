@@ -28,10 +28,19 @@ class BaseApiFactoryTest extends PHPUnit_Framework_TestCase
         $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'deployment', 'deployment');
         $this->assertTrue($api);
 
-        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'monitor', 'deployment');
+        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'monitor', 'monitor');
         $this->assertTrue($api);
 
-        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'bla', 'deployment');
+        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'filter', 'filter');
+        $this->assertTrue($api);
+
+        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'server', 'server');
+        $this->assertTrue($api);
+
+        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'codetracing', 'codetracing');
+        $this->assertFalse($api);
+
+        $api = $baseApiFactory->canCreateServiceWithName($serviceManager, 'foo', 'deployment');
         $this->assertFalse($api);
     }
 
