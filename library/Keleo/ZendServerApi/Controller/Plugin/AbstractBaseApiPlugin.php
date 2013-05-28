@@ -59,7 +59,7 @@ abstract class AbstractBaseApiPlugin extends AbstractPlugin implements ServiceMa
      */
     public function __invoke($server = null)
     {
-        if ($this->deployment === null) {
+        if ($this->baseApi === null) {
             $locator = $this->serviceManager->getServiceLocator();
             if ($server !== null) {
                 $locator->setAllowOverride(true);
